@@ -15,3 +15,4 @@ $user = [
 ];
 
 Messenger::send('RegistrationApprove', $user);
+

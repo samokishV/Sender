@@ -6,6 +6,7 @@
  * Time: 13:08
  */
 
+
 class View
 {
     //public $template_view; // здесь можно указать общий вид по умолчанию.
@@ -16,3 +17,7 @@ class View
         include 'views/'.$template_view;
     }
 }
+
+
+
+

@@ -1,7 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'config/config.php';
-require_once 'config/config.class.php';
 require_once 'Transport/SwiftMailerTransport.php';
 
 class Messenger
@@ -9,19 +8,14 @@ class Messenger
 
     static function send($type, $user)
     {
-        $host = Config::get('host');
-        $port = Config::get('port');
-        $userName = Config::get('user_name');
-        $password = Config::get('password');
-        $encryption = Config::get('encryption');
-
+        $config = include('config/config.php');
         $sender = [
-            'name' => Config::get('name'),
-            'email' => Config::get('email')
+            'name' => $config['name'],
+            'email' => $config['email']
         ];
 
 // Create the Transport
-        $transport = SwiftMailerTransport::connect($host, $port, $userName, $password, $encryption);
+        $transport = SwiftMailerTransport::connect();
 
 // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
@@ -33,7 +27,7 @@ class Messenger
         $message = (new Swift_Message($mail->getTitle()))
             ->setFrom([$sender['email'] => $sender['name']])
             ->setTo([$user['email'] => $user['first name'].' '.$user['last name'] ])
-            ->setBody($mail->getHtml());
+            ->setBody($mail->getHtml(), "text/html");
 
 // Send the message
         $result = $mailer->send($message);

@@ -7,8 +7,8 @@
  */
 include 'view.php';
 
-class RegistrationApprove {
-    private $title = "Registartion approve";
+class ProductOrder {
+    private $title = "Product order";
 
     /**
      * @return string
@@ -21,7 +21,7 @@ class RegistrationApprove {
     public function getHtml() {
 
         ob_start();
-        $this->view->generate('RegistrationApprove.php', 'base.php');
+        $this->view->generate('ProductOrder.php', 'base.php');
         $content = ob_get_contents();
         ob_end_clean();
 

@@ -7,5 +7,5 @@
  */
 
 interface TransportInterface {
-    static function connect($host, $port, $userName, $password, $encryption);
+    static function connect();
 }

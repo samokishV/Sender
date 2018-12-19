@@ -5,18 +5,19 @@
  * Date: 18.12.18
  * Time: 18:35
  */
-include 'Sender/config/config.php';
+
 include 'TransportInterface.php';
 
 class SwiftMailerTransport implements TransportInterface {
 
-    static function connect($host, $port, $userName, $password, $encryption) {
+    static function connect() {
+        $config = include 'config/config.php';
         $transport = new Swift_SmtpTransport();
-        $transport->setHost($host);
-        $transport->setPort($port);
-        $transport->setUsername($userName);
-        $transport->setPassword($password);
-        $transport->setEncryption($encryption);
+        $transport->setHost($config['host']);
+        $transport->setPort($config['port']);
+        $transport->setUsername($config['user_name']);
+        $transport->setPassword($config['password']);
+        $transport->setEncryption($config['encryption']);
         return $transport;
 
     }
