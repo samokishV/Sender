@@ -9,10 +9,14 @@
 include "Messenger.php";
 
 $user = [
-    'first name' => 'Viktoria',
-    'last name' => 'Samokish',
+    'name' => 'Viktoria',
     'email' => 'samokish.viktoria@gmail.com'
 ];
 
-Messenger::send('RegistrationApprove', $user);
+$_POST['name'] = "myName";
+$_POST['email'] = "my@mail.ru";
+$_POST['subject'] = "spam";
+$_POST['message'] = "myMessage";
+
+Messenger::send('ContactUs', $user, $_POST);
 

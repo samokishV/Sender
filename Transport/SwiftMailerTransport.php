@@ -11,7 +11,7 @@ include 'TransportInterface.php';
 class SwiftMailerTransport implements TransportInterface {
 
     static function connect() {
-        $config = include 'config/config.php';
+        $config = include '/home/NIX/phpstudent/www/app/Sender/config/config.php';
         $transport = new Swift_SmtpTransport();
         $transport->setHost($config['host']);
         $transport->setPort($config['port']);

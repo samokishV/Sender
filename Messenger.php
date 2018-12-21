@@ -1,14 +1,13 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'config/config.php';
 require_once 'Transport/SwiftMailerTransport.php';
 
 class Messenger
 {
 
-    static function send($type, $user)
+    static function send($type, $user, $data)
     {
-        $config = include('config/config.php');
+        $config = include('/home/NIX/phpstudent/www/app/Sender/config/config.php');
         $sender = [
             'name' => $config['name'],
             'email' => $config['email']
@@ -17,23 +16,28 @@ class Messenger
 // Create the Transport
         $transport = SwiftMailerTransport::connect();
 
+
+
 // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
 
-    include $type.'.php';
-    $mail = new $type();
+        include "mailview.php";
+
+        $mail = new MailView($type, $data);
 
 // Create a message
         $message = (new Swift_Message($mail->getTitle()))
             ->setFrom([$sender['email'] => $sender['name']])
-            ->setTo([$user['email'] => $user['first name'].' '.$user['last name'] ])
+            ->setTo([$user['email'] => $user['name']])
             ->setBody($mail->getHtml(), "text/html");
 
 // Send the message
         $result = $mailer->send($message);
+        /*
+  // Sendmail
+          $transport = new Swift_SendmailTransport('/usr/sbin/sendmail -bs');
 
-// Sendmail
-        $transport = new Swift_SendmailTransport('/usr/sbin/sendmail -bs');
+          */
 
     }
 
