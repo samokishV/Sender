@@ -6,6 +6,7 @@
  * Time: 13:08
  */
 
+namespace Sender\views;
 
 class MailView
 {
@@ -46,7 +47,15 @@ class MailView
         return $this->content;
     }
 
-    public function getTitle() {
+    public function getTitle($view, $data) {
+        switch($view) {
+            case 'ContactUs' : $this->title = $data['subject'];
+                break;
+            case 'ProductOrder' : $this->title = 'Product order';
+                break;
+            case 'RegistrationApprove' : $this->title = 'Registration approve';
+                break;
+        }
         return $this->title;
     }
 }

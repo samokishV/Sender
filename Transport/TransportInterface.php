@@ -6,6 +6,8 @@
  * Time: 11:03
  */
 
+namespace Sender\Transport;
+
 interface TransportInterface {
-    static function connect();
+    public static function create($config);
 }

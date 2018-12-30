@@ -6,20 +6,33 @@
  * Time: 18:35
  */
 
-include 'TransportInterface.php';
+namespace Sender\Transport;
 
-class SwiftMailerTransport implements TransportInterface {
+class SwiftMailerTransport implements TransportInterface
+{
+    public static function create($config)
+    {
+        $transport = self::createTransport($config);
+        $mailer = self::createMailer($transport);
+        return $mailer;
+    }
 
-    static function connect() {
-        $config = include '/home/NIX/phpstudent/www/app/Sender/config/config.php';
-        $transport = new Swift_SmtpTransport();
-        $transport->setHost($config['host']);
-        $transport->setPort($config['port']);
-        $transport->setUsername($config['user_name']);
-        $transport->setPassword($config['password']);
-        $transport->setEncryption($config['encryption']);
+    public static function createTransport($config)
+    {
+        $transport = (new \Swift_SmtpTransport())
+            ->setHost($config['host'])
+            ->setPort($config['port'])
+            ->setUsername($config['user_name'])
+            ->setPassword($config['password'])
+            ->setEncryption($config['encryption']);
+
         return $transport;
+    }
 
+    public static function createMailer($transport)
+    {
+        $mailer = new \Swift_Mailer($transport);
+        return $mailer;
     }
 
 }
