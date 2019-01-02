@@ -8,6 +8,8 @@
 
 namespace Sender\Transport;
 
+require_once __DIR__.'/../vendor/autoload.php';
+
 class SwiftMailerTransport implements TransportInterface
 {
     public static function create($config)

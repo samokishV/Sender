@@ -27,7 +27,7 @@ class MailView
     }
 
     private function getPath($file) {
-        $path = 'views/'.$file;
+        $path = __DIR__.'/../views/'.$file;
         return $path;
     }
 

@@ -4,6 +4,8 @@ namespace Sender;
 
 use Sender\views\MailView as MailView;
 
+require_once 'vendor/autoload.php';
+
 class Messenger
 {
     static function send($type, $user, $data, $config, $mailer)
