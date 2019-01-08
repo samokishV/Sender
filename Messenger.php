@@ -10,7 +10,7 @@ class Messenger
 {
     static function send($type, $user, $data, $config, $mailer)
     {
-        $mail = new MailView($type, $data);
+        $mail = new MailView($type, $data, $config);
 
         $sender = [
             'name' => $config['name'],

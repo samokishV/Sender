@@ -13,10 +13,10 @@ class MailView
     private $title = "default title";
     private $content;
 
-    function __construct($view, $data) {
+    function __construct($view, $data, $config) {
         $file = $this->getFile($view);
         $path = $this->getPath($file);
-        $content = $this->render($path, $data);
+        $content = $this->render($path, $data, $config);
         $this->setHtml($content);
 
     }
@@ -31,7 +31,7 @@ class MailView
         return $path;
     }
 
-    private function render($path, $data) {
+    private function render($path, $data, $config) {
         ob_start();
         include $path;
         $content = ob_get_contents();
