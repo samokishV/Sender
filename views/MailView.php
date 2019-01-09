@@ -55,6 +55,8 @@ class MailView
                 break;
             case 'RegistrationApprove' : $this->title = 'Registration approve';
                 break;
+            case 'PasswordRecovery' : $this->title = 'Password recovery';
+                break;
         }
         return $this->title;
     }
