@@ -1,4 +1,13 @@
 {
+    "name": "phpstudent/www",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Viktoria Samokish",
+            "email": "samokish.viktoria@gmail.com"
+        }
+    ],
+
     "require": {
         "swiftmailer/swiftmailer": "^6.0"
     },
